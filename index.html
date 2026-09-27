@@ -3,10 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
   <title>App de Recompensas</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #111827;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 480px;
+      min-height: 100vh;
+      margin: auto;
+      background: #ffffff;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 24px 20px;
+      border-radius: 0 0 24px 24px;
+    }
+
+    header h1 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .saldo {
+      background: #f9fafb;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .saldo small {
+      color: #6b7280;
+    }
+
+    .saldo h2 {
+      font-size: 32px;
+      margin-top: 8px;
+    }
+
+    .reward {
+      background: #111827;
+      color: white;
+      border-radius: 20px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .reward .icone {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .reward h2 {
+      margin-bottom: 8px;
+    }
+
+    .reward p {
+      color: #d1d5db;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-recompensa {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      background: white;
+      color: #111827;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .btn-recompensa:active {
+      transform: scale(0.98);
+    }
+
+    .info {
+      background: #f9fafb;
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .info h3 {
+      margin-bottom: 10px;
+    }
+
+    .info p {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #374151;
+      display: none;
+    }
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 68px;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    nav button {
+      background: transparent;
+      color: #6b7280;
+      font-size: 13px;
+      padding: 8px 20px;
+    }
+
+    nav button.ativo {
+      color: #111827;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>App de Recompensas</h1>
-  <p>Bem-vindo!</p>
+
+  <div class="app">
+
+    <header>
+      <h1>App de Recompensas</h1>
+      <p>Ganhe pontos realizando atividades.</p>
+    </header>
+
+    <main class="content">
+
+      <section class="saldo">
+        <small>Seus pontos</small>
+        <h2 id="pontos">0</h2>
+      </section>
+
+      <section class="reward">
+
+        <div class="icone">🎁</div>
+
+        <h2>Recompensa disponível</h2>
+
+        <p>
+          Assista ao anúncio completo quando o sistema de anúncios
+          estiver conectado e receba seus pontos.
+        </p>
+
+        <button class="btn-recompensa" onclick="assistirAnuncio()">
+          ▶ Assistir anúncio
+        </button>
+
+        <div class="mensagem" id="mensagem">
+          Sistema de anúncios ainda não conectado.
+        </div>
+
+      </section>
+
+      <section class="info">
+        <h3>Como funciona?</h3>
+
+        <p>
+          1. Toque em “Assistir anúncio”.<br><br>
+          2. Assista ao anúncio completo.<br><br>
+          3. Depois que a plataforma de anúncios estiver integrada,
+          os pontos serão adicionados automaticamente.
+        </p>
+      </section>
+
+    </main>
+
+    <nav>
+      <button class="ativo" onclick="inicio()">🏠<br>Início</button>
+      <button onclick="recompensas()">🎁<br>Recompensas</button>
+    </nav>
+
+  </div>
+
+  <script>
+
+    let pontos = 0;
+
+    function assistirAnuncio() {
+      const mensagem = document.getElementById("mensagem");
+
+      mensagem.style.display = "block";
+      mensagem.innerText =
+        "O sistema de anúncios ainda não foi conectado.";
+
+      setTimeout(() => {
+        mensagem.style.display = "none";
+      }, 4000);
+    }
+
+    function inicio() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function recompensas() {
+      window.scrollTo({
+        top: 300,
+        behavior: "smooth"
+      });
+    }
+
+  </script>
+
 </body>
 </html>
